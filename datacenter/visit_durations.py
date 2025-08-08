@@ -7,9 +7,7 @@ def is_visit_long(visit, minutes=60):
     leaved_at = localtime(visit.leaved_at or timezone.now())
     delta = leaved_at - entered_at
     total_minutes = int(delta.total_seconds() / 60)
-    if total_minutes < minutes:
-        return False
-    return True
+    return total_minutes > minutes
 
 def get_duration(visit):
     entered_at = localtime(visit.entered_at)
