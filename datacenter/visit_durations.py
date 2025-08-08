@@ -5,7 +5,7 @@ from django.utils import timezone
 def is_visit_long(visit, minutes=60):
     entered_at = localtime(visit.entered_at)
     leaved_at = localtime(visit.leaved_at)
-    if not leaved_at:
+    if leaved_at == None:
         leaved_at = timezone.now()
     delta = leaved_at - entered_at
     total_seconds = delta.total_seconds()
@@ -17,7 +17,7 @@ def is_visit_long(visit, minutes=60):
 def get_duration(visit):
     entered_at = localtime(visit.entered_at)
     leaved_at = localtime(visit.leaved_at)
-    if not leaved_at:
+    if leaved_at == None:
         now = timezone.now()
         delta = now - entered_at
     else:
